@@ -18,7 +18,7 @@ export default function App() {
       <SafeAreaProvider>
         <NavStack />
         {/* <Navigation colorScheme={colorScheme} /> */}
-        <StatusBar />
+        <StatusBar style='inverted'/>
       </SafeAreaProvider>
     );
   }

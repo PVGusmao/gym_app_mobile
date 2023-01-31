@@ -1,11 +1,36 @@
 import styled from "styled-components/native";
 
+export const ScrollViewWrapper = styled.ScrollView`
+  background-color: black;
+  padding-top: 75px;
+`
+
 export const Container = styled.View`
-  flex: 1;
+  align-items: center;
+  justify-content: space-evenly;
+
+  padding: 20px;
+
+  height: auto;
+
+  background-color: black;
+`
+
+export const InputWrapper = styled.View`
   align-items: center;
   justify-content: center;
+  
+  background-color: darkred;
 
-  background-color: gray;
+  border: 1px solid white;
+  border-radius: 15px;
+
+  padding: 10px;
+
+  /* margin-bottom: 75px; */
+
+  width: 75%;
+  height: 350px;
 `
 
 export const Title = styled.Text`

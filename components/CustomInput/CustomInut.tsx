@@ -1,4 +1,4 @@
-import { Container, Input, Title } from "./styled";
+import { Input } from "./styled";
 
 export function CustomInput() {
   return (

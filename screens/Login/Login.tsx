@@ -1,11 +1,24 @@
 import { CustomInput } from "../../components/CustomInput/CustomInut";
-import { Container, Title } from "./style";
+import { Footer } from "../../components/Footer/Footer";
+import { Header } from "../../components/Header/Header";
+import { Container, InputWrapper, ScrollViewWrapper, Title } from "./style";
 
 export function Login() {
   return (
-    <Container>
-      <CustomInput />
-      <CustomInput />
-    </Container>
+    <ScrollViewWrapper>
+      <Header />
+      <Container>
+
+        <InputWrapper>
+      
+          <CustomInput />
+          <CustomInput />
+      
+        </InputWrapper>
+
+      </Container>
+      
+      <Footer />
+    </ScrollViewWrapper>
   )
 }
