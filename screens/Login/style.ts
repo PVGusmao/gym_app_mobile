@@ -33,8 +33,15 @@ export const InputWrapper = styled.View`
   height: 350px;
 `
 
-export const Title = styled.Text`
-  color: black;
+export const Link = styled.TouchableOpacity`
+  position: absolute;
 
-  font-size: 24px;
+  bottom: 20px;
+`
+
+export const Title = styled.Text`
+  color: white;
+
+  font-size: 10px;
+  font-weight: bold;
 `
