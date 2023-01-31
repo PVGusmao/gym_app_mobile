@@ -15,11 +15,17 @@ export function Login() {
 
         <InputWrapper>
       
-          <CustomInput />
-          <CustomInput />
+          <CustomInput
+            placeholder="E-mail"
+            placeholderColor="white"
+          />
+          <CustomInput
+            placeholder="Password"
+            placeholderColor="white"
+          />
 
           <ButtonComponent
-            mt={10}
+            mt={30}
             mb={10}
             bRadius={10}
             title='Logar'

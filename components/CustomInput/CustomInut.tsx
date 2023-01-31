@@ -1,7 +1,15 @@
 import { Input } from "./styled";
 
-export function CustomInput() {
+type Props = {
+  placeholder?: string;
+  placeholderColor?: string;
+}
+
+export function CustomInput({ placeholder, placeholderColor }: Props) {
   return (
-    <Input />
+    <Input
+      placeholder={placeholder}
+      placeholderTextColor={placeholderColor}
+    />
   )
 }

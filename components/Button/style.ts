@@ -24,7 +24,7 @@ export const Button = styled.TouchableOpacity<Props>`
   border-radius: ${props=> props.bRadius ? props.bRadius : 0}px;
 
   background-color: ${props => props.bgColor == 'FILLED' ? 'green' : 'darkred'};
-  border: 1px solid white;
+  border: 1px solid ${props => props.bgColor == 'FILLED' ? 'green' : 'rgba(255, 255, 255, 0.5)'};
 
 `
 
