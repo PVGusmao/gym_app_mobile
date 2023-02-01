@@ -18,10 +18,14 @@ export function Login() {
           <CustomInput
             placeholder="E-mail"
             placeholderColor="white"
+            bgColor="darkred"
+            borderBotomColor="white"
           />
           <CustomInput
             placeholder="Password"
             placeholderColor="white"
+            bgColor="darkred"
+            borderBotomColor="white"
           />
 
           <ButtonComponent
@@ -47,7 +51,7 @@ export function Login() {
 
       </Container>
       
-      <Footer />
+      <Footer colorTitle='white' />
     </ScrollViewWrapper>
   )
 }
