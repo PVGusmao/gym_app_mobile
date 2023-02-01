@@ -11,36 +11,43 @@ export function Register() {
       <Title>Register Screen</Title>
 
       <CustomInput
+        fontColor='black'
         borderBotomColor="black"
         placeholder="Qual seu nome?"
       />
       
       <CustomInput
+        fontColor='black'
         borderBotomColor="black"
         placeholder="Qual seu sobrenome?"
       />
       
       <CustomInput
+        fontColor='black'
         borderBotomColor="black"
         placeholder="Quando você nasceu?"
       />
       
       <CustomInput
+        fontColor='black'
         borderBotomColor="black"
         placeholder="Qual gênero você se identifica?"
       />
       
       <CustomInput
+        fontColor='black'
         borderBotomColor="black"
         placeholder="Qual seu e-mail?"
       />
       
       <CustomInput
+        fontColor='black'
         borderBotomColor="black"
         placeholder="Cadastre uma senha"
       />
 
       <CustomInput
+        fontColor='black'
         borderBotomColor="black"
         placeholder="Confirme sua senha"
       />
