@@ -13,7 +13,7 @@ export const Input = styled.TextInput<Props>`
   border-bottom-color: ${props => props.borderBotomColor};
 
   height: 40px;
-  width: 90%;
+  width: 100%;
 
   padding: 10px;
 

@@ -14,15 +14,18 @@ export function CustomInput(
     placeholderColor,
     bgColor = 'white',
     borderBotomColor = 'white',
-    fontColor = 'white' 
+    fontColor = 'white',
   }: Props) {
-  return (
-    <Input
-      borderBotomColor={borderBotomColor}
-      bgColor={bgColor}
-      placeholder={placeholder}
-      placeholderTextColor={placeholderColor}
-      fontColor={fontColor}
-    />
-  )
+    
+    return (
+      <>
+        <Input
+          borderBotomColor={borderBotomColor}
+          bgColor={bgColor}
+          placeholder={placeholder}
+          placeholderTextColor={placeholderColor}
+          fontColor={fontColor}
+        />
+      </>
+    )
 }
