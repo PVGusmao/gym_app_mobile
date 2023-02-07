@@ -7,6 +7,7 @@ import { Register } from "../../screens/Register/Register";
 type RootStackParamList = {
   Login: undefined;
   Register: undefined;
+  Dashboard: undefined;
 }
 
 const {Navigator, Screen} = createNativeStackNavigator<RootStackParamList>();

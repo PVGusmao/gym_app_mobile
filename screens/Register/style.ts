@@ -51,6 +51,4 @@ export const Title = styled.Text`
 
 export const ButtonWrapper = styled.View`
   align-items: center;
-
-  margin-bottom: 200px;
 `

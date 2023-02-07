@@ -8,8 +8,8 @@ import { ButtonWrapper, Container, ContainerInputIcon, ErrorLine, StyledInput, T
 
 import { useNavigation } from '@react-navigation/native';
 
-import { Footer } from "../../components/Footer/Footer";
 import { ButtonComponent } from "../../components/Button/Button";
+import { api } from '../../utils/api';
 
 const schema = yup.object({
   name: yup.string().required('Necessário preencher o nome.').min(3, 'Deve ter pelo menos 3 caracteres.'),
@@ -28,9 +28,12 @@ export function Register() {
     resolver: yupResolver(schema)
   })
 
-  // function onSubmit(data: any) {
-  //   console.log(data);
-  // }
+  async function onSubmit(data: any) {
+    const response = await api.post('/register', data)
+    .catch((e) => console.log(e.response.data.message));
+
+    return response;
+  }
 
   return (
     <Container>
@@ -42,7 +45,7 @@ export function Register() {
         <ContainerInputIcon>
           <Controller
             control={control}
-            name="name"
+            name="firstName"
             render={({ field: { onChange, value, onBlur } }) => (
               <StyledInput
                 placeholder="Insira o nome *"
@@ -62,7 +65,7 @@ export function Register() {
         <ContainerInputIcon>
           <Controller
             control={control}
-            name="last_name"
+            name="lastName"
             render={({ field: { onChange, value, onBlur } }) => (
               <StyledInput
                 placeholder="Insira o sobrenome *"
@@ -82,7 +85,7 @@ export function Register() {
         <ContainerInputIcon>
           <Controller
             control={control}
-            name="birth_date"
+            name="birthDate"
             render={({ field: { onChange, value, onBlur } }) => (
               <StyledInput
                 placeholder="Data de nascimento *"
@@ -146,7 +149,7 @@ export function Register() {
             name="password"
             render={({ field: { onChange, value, onBlur } }) => (
               <StyledInput
-                placeholder="Qual seu email *"
+                placeholder="Digite seu password *"
                 placeholderTextColor='rgba(161, 161, 161, 1)'
                 value={value}
                 onBlur={onBlur}
@@ -163,7 +166,8 @@ export function Register() {
         <ButtonWrapper>
           <ButtonComponent
             onPress={handleSubmit((data) => {
-              console.log(data);
+              onSubmit(data);
+              navigation.goBack();
             })}
             title='Registrar'
             mt={25}
@@ -181,7 +185,6 @@ export function Register() {
         </ButtonWrapper>
 
 
-        <Footer colorTitle='black' />
         </ScrollView>
       </Container>
   )
