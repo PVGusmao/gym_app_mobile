@@ -9,7 +9,9 @@ import { Footer } from "../../components/Footer/Footer";
 import { Header } from "../../components/Header/Header";
 import { ButtonComponent } from "../../components/Button/Button";
 import { CustomInput } from "../../components/CustomInput/CustomInut";
-import { api } from "../../utils/api";
+
+import api from "../../utils/api";
+import { Button } from "react-native";
 
 export function Login() {
   const navigation = useNavigation();
@@ -20,11 +22,12 @@ export function Login() {
   })
 
   async function loginUser() {
-    const response = await api.post('/login', login);
     try {
-      await AsyncStorage.setItem('@storage_Key', JSON.stringify(response));
-    } catch (e) {
-      throw new Error('Could not make the request, please, see if email or password is corret.')
+      const response = await api.post('/login', login);
+      await AsyncStorage.setItem('token', JSON.stringify(response?.data?.token));
+      console.log(response.data.token);
+    } catch(e) {
+      console.log(e);
     }
   }
 
@@ -64,6 +67,10 @@ export function Login() {
             bRadius={10}
             title='Cadastrar'
           />
+
+          <Button title="Click me" onPress={async () => {
+            await api.get('login');
+          }}/>
 
           <Link>
             <Title>
