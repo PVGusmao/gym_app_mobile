@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { Container, InputWrapper, Link, ScrollViewWrapper, Title } from "./style";
@@ -12,8 +12,11 @@ import { CustomInput } from "../../components/CustomInput/CustomInut";
 
 import api from "../../utils/api";
 import { Button } from "react-native";
+import { IMyContext, MyContext } from "../../context/MyContext";
 
 export function Login() {
+  const { setToken, validation, setValidation } = useContext(MyContext) as IMyContext;
+
   const navigation = useNavigation();
 
   const [login, setLogin] = useState({
@@ -24,8 +27,9 @@ export function Login() {
   async function loginUser() {
     try {
       const response = await api.post('/login', login);
+      setToken(response?.data?.token);
       await AsyncStorage.setItem('token', JSON.stringify(response?.data?.token));
-      console.log(response.data.token);
+      setValidation(!validation);
     } catch(e) {
       console.log(e);
     }
@@ -70,6 +74,7 @@ export function Login() {
 
           <Button title="Click me" onPress={async () => {
             await api.get('login');
+            // console.log(token)
           }}/>
 
           <Link>
