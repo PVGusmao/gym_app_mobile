@@ -16,8 +16,6 @@ import { DashBoard } from '../screens/DashBoard/DashBoard';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import { Profile } from '../screens/Profile/Profile';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 
@@ -66,6 +64,7 @@ function BottomTabNavigator() {
         tabBarShowLabel: false,
         headerShown: false,
       }}>
+        
       <BottomTab.Screen
         name="DashBoard"
         component={DashBoard}
@@ -74,16 +73,6 @@ function BottomTabNavigator() {
           tabBarIcon: ({ color }) => <MaterialIcons name="fitness-center" color={color} size={36} />,
         })}
       />
-      
-      {/* <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoScreen}
-        options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerShown: false,
-        }}
-      /> */}
 
       <BottomTab.Screen
         name="Profile"
