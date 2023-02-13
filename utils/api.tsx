@@ -7,16 +7,16 @@ export const getToken = async () => {
 }
 
 const api = axios.create({
-  // baseURL: 'http://10.0.0.22:3000',
-  baseURL: 'https://wger.de/api',
+  baseURL: 'http://10.0.0.22:3000',
+  // baseURL: 'https://wger.de/api',
 });
 
-// api.interceptors.request.use(async config => {
-//   const token = await getToken();
-//   if (token)
-//       config.headers.Authorization = `Bearer ${token}`
+api.interceptors.request.use(async config => {
+  const token = await getToken();
+  if (token)
+      config.headers.Authorization = `Bearer ${token}`
 
-//   return config
-// })
+  return config
+})
 
 export default api;

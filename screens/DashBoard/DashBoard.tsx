@@ -1,5 +1,7 @@
-import { Button, Text, View } from "react-native";
-import api from "../../utils/api";
+import { StatusBar } from "expo-status-bar";
+import { Text, View } from "react-native";
+import BackgroundVideo from "../../components/BackgroundVideo/BackgroundVideo";
+
 
 export function DashBoard() {
   return (
@@ -8,21 +10,9 @@ export function DashBoard() {
       alignItems: 'center',
       justifyContent: 'center',
     }}>
+      <StatusBar translucent/>
       <Text>Fitness Center</Text>
-      <Button title="Click me" onPress={async () => {
-        try{
-          const response = await api.get('/v2/workout/', {
-            headers: {
-              "Content-Type": 'application/json',
-              "Authorization": 'Token 4d7ca4a07b492e37db7b8d21caa45888c8c9f265'
-            }
-          });
-
-          console.log(response.data);
-        } catch(err) {
-          console.log(err?.response?.data);
-        }
-      }}/>
+      {/* <BackgroundVideo /> */}
     </View>
   )
 }
