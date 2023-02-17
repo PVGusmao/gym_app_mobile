@@ -64,18 +64,15 @@ export function Login() {
             bRadius={10}
             title='Logar'
             onPress={loginUser}
+            fontSize={16}
           />
           <ButtonComponent
             onPress={() => navigation.navigate('Register')}
             bgColor="OUTLINE"
             bRadius={10}
             title='Cadastrar'
+            fontSize={16}
           />
-
-          <Button title="Click me" onPress={async () => {
-            await api.get('login');
-            // console.log(token)
-          }}/>
 
           <Link>
             <Title>

@@ -8,19 +8,25 @@ type Props = TouchableOpacityProps & {
   mr?: number;
   mb?: number;
   bRadius?: number;
-  title: string;
+  title?: string;
+  fontSize?: number;
+  width?: number;
+  height?: number;
   onPress?: Function;
 }
 
 export function ButtonComponent(
   {
     bgColor = 'FILLED',
+    fontSize = 0,
     mt = 0,
     mb = 0,
     ml = 0,
     mr = 0,
     bRadius = 0,
     title,
+    width,
+    height,
     onPress,
     ...rest
   }: Props) {
@@ -32,10 +38,12 @@ export function ButtonComponent(
       ml = {ml}
       mr = {mr}
       bRadius={bRadius}
+      width={width}
+      height={height}
       onPress={onPress}
       {...rest}
     >
-      <Title>{title}</Title>
+      <Title fontSize={fontSize}>{title}</Title>
     </Button>
   )
 }

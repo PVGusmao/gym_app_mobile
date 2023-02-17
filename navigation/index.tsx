@@ -13,6 +13,7 @@ import { ColorSchemeName, Pressable } from 'react-native';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import { DashBoard } from '../screens/DashBoard/DashBoard';
+import { Home } from '../screens/Home/Home';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import { Profile } from '../screens/Profile/Profile';
@@ -40,6 +41,7 @@ function RootNavigator() {
     <Stack.Navigator>
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+      <Stack.Screen name="Home" component={Home} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
       </Stack.Group>
