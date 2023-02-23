@@ -28,3 +28,10 @@ export const ButtonText = styled.Text`
   font-size: 16px;
   font-weight: bold;
 `
+
+export const SimpleText = styled.Text`
+  margin-top: 20px;
+
+  font-size: 16px;
+  
+`

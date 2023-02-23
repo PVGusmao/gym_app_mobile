@@ -15,7 +15,7 @@ import { Button } from "react-native";
 import { IMyContext, MyContext } from "../../context/MyContext";
 
 export function Login() {
-  const { setToken, validation, setValidation } = useContext(MyContext) as IMyContext;
+  const { setToken, validation, setValidation, setEmail } = useContext(MyContext) as IMyContext;
 
   const navigation = useNavigation();
 
@@ -47,7 +47,10 @@ export function Login() {
             placeholderColor="white"
             bgColor="darkred"
             borderBotomColor="white"
-            onChange={(text: string) => setLogin({...login, email: text})}
+            onChange={(text: string) => {
+              setLogin({...login, email: text})
+              setEmail(text);
+            }}
           />
           <CustomInput
             placeholder="Password"

@@ -2,18 +2,16 @@ import { useState } from "react";
 import { ButtonSelect, Container, ModalContainer, ModalText, SelectText, SelectTextWrapper, SimpleText, ViewModal, ViewModalText } from "./style";
 
 type Props = {
-  titleWord: string;
   filter: string[];
   state: string;
   setState: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export function Select({ filter, state = 'None', setState, titleWord }: Props) {
+export function Select({ filter, state = 'None', setState }: Props) {
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
     <Container>
-      <SimpleText>{`Escolha o ${titleWord} do exercício`}</SimpleText>
       <ButtonSelect onPress={() => setModalVisible(true)}>
         <SelectTextWrapper>
           <SelectText>{state}</SelectText>

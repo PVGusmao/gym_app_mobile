@@ -1,10 +1,14 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { IMyContext, MyContext } from '../../context/MyContext';
 
-import { ButtonContainer, ButtonText, Container } from "./style";
+import { ButtonContainer, ButtonText, Container, SimpleText } from "./style";
 
 import { Select } from "../../components/Select/Select";
 import { useNavigation } from '@react-navigation/native';
+
+import { difficulty, type, style } from '../../constants/Texts';
+
+import api from '../../utils/api';
 
 export interface ExercisesInterface {
   difficulty: string;
@@ -18,44 +22,60 @@ export interface ExercisesInterface {
 export function Home() {
   const navigation = useNavigation();
 
-  const { selectedDifficulty, setSelectedDifficulty, selectedType, setSelectedType } = useContext(MyContext) as IMyContext;
+  const {
+    selectedDifficulty,
+    setSelectedDifficulty,
+    selectedType,
+    setSelectedType,
+    selectedStyle,
+    setSelectedStyle,
+    email,
+  } = useContext(MyContext) as IMyContext;
 
-  const difficulty = [
-    'Beginner',
-    'Intermediate',
-    'Expert'
-  ];
-
-  const type = [
-    'Cardio',
-    'Olympic Weightlifting',
-    'Plyometrics',
-    'Powerlifting',
-    'Strength',
-    'Stretching',
-    'Strongman'
-  ]
+  async function getUserData() {
+    try {
+      const response = await api.get('/register/pvmg1@hotmail.com');
+      console.log(response);
+    } catch(e) {
+      console.log(e);
+    }
+  }
 
   return (
     <>
     <Container>
 
+      <SimpleText>{`Escolha o tipo dos exercícios`}</SimpleText>
+
       <Select
-        titleWord="tipo"
         filter={type}
         state={selectedType}
         setState={setSelectedType}
       />
 
+      <SimpleText>{`Escolha a dificuldade dos exercícios`}</SimpleText>
+
       <Select
-        titleWord="nível"
         filter={difficulty}
         state={selectedDifficulty}
         setState={setSelectedDifficulty}
       />
+
+      <SimpleText>{`Escolha o estilo dos exercícios`}</SimpleText>
+
+      <Select
+        filter={style}
+        state={selectedStyle}
+        setState={setSelectedStyle}
+      />
       
     </Container>
-      <ButtonContainer disabled={selectedType === 'None' || selectedDifficulty === 'None' ? true : false} onPress={() => {navigation.navigate('Series')}}>
+
+      <ButtonContainer
+        disabled={
+          selectedType === 'None' || selectedDifficulty === 'None' || selectedStyle === 'None' ? true : false
+        }
+        onPress={() => { navigation.navigate('Series') }}>
         <ButtonText>Request Series</ButtonText>
       </ButtonContainer>
     </>

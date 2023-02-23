@@ -1,5 +1,7 @@
 import { Animated, } from "react-native";
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
+import { IMyContext, MyContext } from "../../context/MyContext";
+
 import { useNavigation } from "@react-navigation/native";
 
 import { StatusBar } from "expo-status-bar";
@@ -8,8 +10,21 @@ import { Container, ContainerTextField, TextField } from "./style";
 
 import { ButtonComponent } from "../../components/Button/Button";
 
+import api from "../../utils/api";
+
 export function DashBoard() {
   const navigation = useNavigation();
+
+  const { email } = useContext(MyContext) as IMyContext;
+
+  async function getUserData() {
+    try {
+      const response = await api.get(`/register/${email}`);
+      console.log(response);
+    } catch(e) {
+      console.log(e);
+    }
+  }
 
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
@@ -62,6 +77,7 @@ export function DashBoard() {
         bRadius={30}
         title='Clique aqui para montarmos seu perfil'
         onPress={() => {
+        getUserData();
         navigation.navigate('Home')
       }} />
     </Container>

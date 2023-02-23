@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
-  margin-top: 20px;
+  margin-top: 10px;
 `
 
 export const ModalContainer = styled.Modal`
@@ -37,15 +37,11 @@ export const ButtonContainer = styled.TouchableOpacity`
 
 `
 
-export const SimpleText = styled.Text`
-
-`
-
 export const SelectTextWrapper = styled.Text`
   border: 1px solid gray;
   padding: 10px;
   border-radius: 5px;
-  margin-top: 20px;
+  margin-top: 10px;
 `
 
 export const SelectText = styled.Text`
