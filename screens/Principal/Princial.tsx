@@ -15,7 +15,6 @@ export function Principal() {
   async function validateToken() {
     try {
       const response = await api.get('login');
-      console.log(response.data);
       setValidation(response as any);
     } catch(err) {
       console.log(err?.response?.data);

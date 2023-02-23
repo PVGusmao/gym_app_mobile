@@ -1,22 +1,30 @@
 import styled from 'styled-components/native';
 
+type Props = {
+  disabled: boolean;
+}
+
 export const Container = styled.View`
-  flex: 1;
+  padding: 20px;
+`
+
+export const ButtonContainer = styled.TouchableOpacity<Props>`
+  margin: 20px;
+  height: 50px;
 
   align-items: center;
   justify-content: center;
+
+  border-radius: 20px;
+
+  background-color: darkgreen;
+
+  opacity: ${props=> props.disabled ? 0.5 : 1};
 `
 
-export const Input = styled.TextInput`
-  width: 90%;
-  height: 50px;
-  background-color: white;
-`
+export const ButtonText = styled.Text`
+  color: white;
 
-export const ButtonContainer = styled.TouchableOpacity`
-
-`
-
-export const Title = styled.Text`
-
+  font-size: 16px;
+  font-weight: bold;
 `

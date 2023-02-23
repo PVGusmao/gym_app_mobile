@@ -1,5 +1,3 @@
-import axios from "axios";
-
 import { Animated, } from "react-native";
 import { useEffect, useRef } from "react";
 import { useNavigation } from "@react-navigation/native";
@@ -9,8 +7,6 @@ import { StatusBar } from "expo-status-bar";
 import { Container, ContainerTextField, TextField } from "./style";
 
 import { ButtonComponent } from "../../components/Button/Button";
-
-import api from "../../utils/api";
 
 export function DashBoard() {
   const navigation = useNavigation();
@@ -71,10 +67,3 @@ export function DashBoard() {
     </Container>
   )
 }
-
-// onPress={async () => {
-//   const response = await axios.get('https://api.api-ninjas.com/v1/exercises?difficulty=beginner&muscle=biceps', { headers: {'X-Api-key': 'ulZm8Uqc0oa8GsEVSXS6Eg==OKWFsibXkKvrqO8S'}});
-//   console.log(response.data);
-//   // const response = await api.get('/exercise');
-//   // console.log(response.data);
-// }}
