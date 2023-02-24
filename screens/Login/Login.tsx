@@ -11,11 +11,10 @@ import { ButtonComponent } from "../../components/Button/Button";
 import { CustomInput } from "../../components/CustomInput/CustomInut";
 
 import api from "../../utils/api";
-import { Button } from "react-native";
 import { IMyContext, MyContext } from "../../context/MyContext";
 
 export function Login() {
-  const { setToken, validation, setValidation, setEmail } = useContext(MyContext) as IMyContext;
+  const { setToken, validation, setValidation, email, setEmail } = useContext(MyContext) as IMyContext;
 
   const navigation = useNavigation();
 
@@ -66,11 +65,14 @@ export function Login() {
             mb={10}
             bRadius={10}
             title='Logar'
-            onPress={loginUser}
+            onPress={async () => {
+              await AsyncStorage.setItem('@email', email);
+              loginUser()
+            }}
             fontSize={16}
           />
           <ButtonComponent
-            onPress={() => navigation.navigate('Register')}
+            onPress={() => {navigation.navigate('Register')}}
             bgColor="OUTLINE"
             bRadius={10}
             title='Cadastrar'

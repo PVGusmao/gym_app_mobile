@@ -11,16 +11,17 @@ import { Container, ContainerTextField, TextField } from "./style";
 import { ButtonComponent } from "../../components/Button/Button";
 
 import api from "../../utils/api";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export function DashBoard() {
   const navigation = useNavigation();
 
-  const { email } = useContext(MyContext) as IMyContext;
-
   async function getUserData() {
     try {
+      const email = await AsyncStorage.getItem('@email');
+      console.log(email);
       const response = await api.get(`/register/${email}`);
-      console.log(response);
+      await AsyncStorage.setItem('@gender', response?.data?.gender === 'M' ? "Masculino" : "Feminino");
     } catch(e) {
       console.log(e);
     }
@@ -78,7 +79,7 @@ export function DashBoard() {
         title='Clique aqui para montarmos seu perfil'
         onPress={() => {
         getUserData();
-        navigation.navigate('Home')
+        navigation.navigate('Objective')
       }} />
     </Container>
   )

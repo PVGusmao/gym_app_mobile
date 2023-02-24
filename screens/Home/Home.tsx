@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { IMyContext, MyContext } from '../../context/MyContext';
 
 import { ButtonContainer, ButtonText, Container, SimpleText } from "./style";
@@ -6,9 +6,9 @@ import { ButtonContainer, ButtonText, Container, SimpleText } from "./style";
 import { Select } from "../../components/Select/Select";
 import { useNavigation } from '@react-navigation/native';
 
-import { difficulty, type, style } from '../../constants/Texts';
+import { difficulty, type, maleStyle, femaleStyle, objective, loseWeightType, hipertrophyType } from '../../constants/Texts';
 
-import api from '../../utils/api';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export interface ExercisesInterface {
   difficulty: string;
@@ -22,6 +22,8 @@ export interface ExercisesInterface {
 export function Home() {
   const navigation = useNavigation();
 
+  const [genderState, setGenderState] = useState('');
+
   const {
     selectedDifficulty,
     setSelectedDifficulty,
@@ -29,17 +31,19 @@ export function Home() {
     setSelectedType,
     selectedStyle,
     setSelectedStyle,
-    email,
+    selectedObjective,
   } = useContext(MyContext) as IMyContext;
 
-  async function getUserData() {
-    try {
-      const response = await api.get('/register/pvmg1@hotmail.com');
-      console.log(response);
-    } catch(e) {
-      console.log(e);
-    }
+  async function getGenderFromStorage() {
+    const gender = await AsyncStorage.getItem('@gender');
+    console.log(gender);
+    setGenderState(gender as string);
+    return gender;
   }
+
+  useEffect(() => {
+    getGenderFromStorage();
+  }, [])
 
   return (
     <>
@@ -48,7 +52,7 @@ export function Home() {
       <SimpleText>{`Escolha o tipo dos exercícios`}</SimpleText>
 
       <Select
-        filter={type}
+        filter={selectedObjective === 'Emagrecer' ? loseWeightType : hipertrophyType}
         state={selectedType}
         setState={setSelectedType}
       />
@@ -64,7 +68,7 @@ export function Home() {
       <SimpleText>{`Escolha o estilo dos exercícios`}</SimpleText>
 
       <Select
-        filter={style}
+        filter={genderState === 'Masculino' ? maleStyle : femaleStyle}
         state={selectedStyle}
         setState={setSelectedStyle}
       />

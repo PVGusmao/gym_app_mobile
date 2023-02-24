@@ -7,12 +7,14 @@ export type IMyContext = {
   loading: boolean;
   exercises: ExercisesInterface[];
   validation: boolean;
+  selectedObjective: string;
   selectedDifficulty: string;
   selectedStyle: string;
   selectedType: string;
   setValidation: React.Dispatch<React.SetStateAction<boolean>>;
   setSelectedDifficulty: React.Dispatch<React.SetStateAction<string>>;
   setSelectedStyle: React.Dispatch<React.SetStateAction<string>>;
+  setSelectedObjective: React.Dispatch<React.SetStateAction<string>>;
   setSelectedType: React.Dispatch<React.SetStateAction<string>>;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   setToken: React.Dispatch<React.SetStateAction<string>>;
@@ -36,6 +38,7 @@ export function MyProvider({ children }: Props) {
   const [exercises, setExercises] = useState<ExercisesInterface[]>([]);
   const [validation, setValidation] = useState<boolean>(false);
   const [selectedDifficulty, setSelectedDifficulty] = useState<string>("None");
+  const [selectedObjective, setSelectedObjective] = useState<string>("None");
   const [selectedType, setSelectedType] = useState<string>("None");
   const [selectedStyle, setSelectedStyle] = useState<string>("None");
 
@@ -47,6 +50,7 @@ export function MyProvider({ children }: Props) {
       exercises, setExercises,
       loading, setLoading,
       selectedDifficulty, setSelectedDifficulty,
+      selectedObjective, setSelectedObjective,
       selectedType, setSelectedType,
       selectedStyle, setSelectedStyle,
     } as IMyContext}>
