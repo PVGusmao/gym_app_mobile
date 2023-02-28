@@ -6,7 +6,7 @@ import { ButtonContainer, ButtonText, Container, SimpleText } from "./style";
 import { Select } from "../../components/Select/Select";
 import { useNavigation } from '@react-navigation/native';
 
-import { difficulty, type, maleStyle, femaleStyle, objective, loseWeightType, hipertrophyType } from '../../constants/Texts';
+import { difficulty, type, maleStyle, femaleStyle, objective } from '../../constants/Texts';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -52,7 +52,7 @@ export function Home() {
       <SimpleText>{`Escolha o tipo dos exercícios`}</SimpleText>
 
       <Select
-        filter={selectedObjective === 'Emagrecer' ? loseWeightType : hipertrophyType}
+        filter={type}
         state={selectedType}
         setState={setSelectedType}
       />
@@ -79,7 +79,7 @@ export function Home() {
         disabled={
           selectedType === 'None' || selectedDifficulty === 'None' || selectedStyle === 'None' ? true : false
         }
-        onPress={() => { navigation.navigate('Series') }}>
+        onPress={() => {genderState === 'Masculino' ? navigation.navigate('Male Series') : navigation.navigate('Female Series') }}>
         <ButtonText>Request Series</ButtonText>
       </ButtonContainer>
     </>

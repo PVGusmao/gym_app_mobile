@@ -1,6 +1,5 @@
 import { Animated, } from "react-native";
-import { useContext, useEffect, useRef } from "react";
-import { IMyContext, MyContext } from "../../context/MyContext";
+import { useEffect, useRef } from "react";
 
 import { useNavigation } from "@react-navigation/native";
 

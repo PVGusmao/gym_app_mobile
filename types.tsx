@@ -18,7 +18,8 @@ export type RootStackParamList = {
   Modal: undefined;
   NotFound: undefined;
   Home: undefined;
-  Series: undefined;
+  'Male Series': undefined;
+  'Female Series': undefined;
   Objective: undefined;
 };
 

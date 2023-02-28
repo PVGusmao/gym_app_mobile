@@ -4,22 +4,7 @@ export const difficulty = [
   'Expert'
 ];
 
-export const loseWeightType = [
-  'Cardio',
-  'Plyometrics',
-  'Stretching',
-]
-
-export const hipertrophyType = [
-  'Powerlifting',
-  'Strength',
-  'Strongman'
-]
-
 export const type = [
-  'Cardio',
-  'Olympic Weightlifting',
-  'Plyometrics',
   'Powerlifting',
   'Strength',
   'Stretching',

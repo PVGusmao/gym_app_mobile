@@ -18,9 +18,10 @@ import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import { Objective } from '../screens/Objective/Objective';
 import { Profile } from '../screens/Profile/Profile';
-import { Series } from '../screens/Series/Series';
+import { MaleSeries } from '../screens/MaleSeries/MaleSeries';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
+import { FemaleSeries } from '../screens/FemaleSeries/FemaleSeries';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -45,7 +46,8 @@ function RootNavigator() {
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Objective" component={Objective} />
-      <Stack.Screen name="Series" component={Series} />
+      <Stack.Screen name="Male Series" component={MaleSeries} />
+      <Stack.Screen name="Female Series" component={FemaleSeries} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
       </Stack.Group>
