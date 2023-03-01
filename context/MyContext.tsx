@@ -32,6 +32,7 @@ type Props = {
 
 export function MyProvider({ children }: Props) {
 
+  const [serie, setSerie] = useState();
   const [token, setToken] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
