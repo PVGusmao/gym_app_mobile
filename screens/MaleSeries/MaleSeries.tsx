@@ -2,6 +2,8 @@ import { useContext, useEffect, useState } from "react";
 
 import { Button, ButtonText, Container, Title } from "./style";
 
+import { Button as RNButton } from 'react-native';
+
 import { useNavigation } from "@react-navigation/native";
 
 import { IMyContext, MyContext } from "../../context/MyContext";
@@ -12,11 +14,13 @@ import { getTriceps } from "../../utils/Triceps/Triceps";
 import { getLowerBack, getMiddleBack, getLats } from "../../utils/Back/Back";
 import { getAbdominals, getAbductors, getAdductors, getCalves, getGlutes, getHamstrings, getQuadriceps } from "../../utils/leg/Leg";
 import { getTraps } from "../../utils/Shoulder/Shoulder";
+import { ActivityIndicator } from "react-native";
+import api, { getToken } from "../../utils/api";
 
 export function MaleSeries() {
   const navigation = useNavigation();
   
-  const { selectedDifficulty, selectedType, selectedStyle, selectedObjective } = useContext(MyContext) as IMyContext;
+  const { selectedDifficulty, selectedType, selectedStyle, selectedObjective, loading, setLoading } = useContext(MyContext) as IMyContext;
   
   const [serie, setSerie] = useState();
   const [abdominals, setAbdominals] = useState([]);
@@ -51,10 +55,25 @@ export function MaleSeries() {
     return randomArray;
   }
 
+  function teste(group: any, lastNumber: number | null) {
+    let randomNumber = Math.floor(Math.random() * group.length);
+          
+    while(randomNumber === lastNumber) {
+      randomNumber = Math.floor(Math.random() * 10);
+    }
+
+    lastNumber = randomNumber;
+
+    return randomNumber;
+  }
+
   async function MountMySeries() {
+
     let ADay = {}
     let BDay = {}
     let CDay = {}
+
+    setLoading(true);
 
     const abs = await getAbdominals(selectedDifficulty);
     setAbdominals(abs);
@@ -99,73 +118,103 @@ export function MaleSeries() {
     setTraps(trap);
 
     if (selectedStyle === 'ABC') {
-      let lastNumber = 1;
+      let lastNumber = null;
 
-      let calvesArray = [];
-      let quadricepsArray = [];
-      let abductorsArray = [];
-      let adductorsArray = [];
-      let hamstringsArray = [];
-      let glutesArray =[];
+      let calvesArray: string[] = [];
+      let quadricepsArray: string[] = [];
+      let abductorsArray: string[] = [];
+      let adductorsArray: string[] = [];
+      let hamstringsArray: string[] = [];
+      let glutesArray: string[] = [];
 
-      let abdominalsArray = [];
+      let abdominalsArray: string[] = [];
       
-      let chestArray = [];
-      let tricepsArray = [];
+      let chestArray: string[] = [];
+      let tricepsArray: string[] = [];
       
-      let latsArray = [];
-      let lowerBackArray = [];
-      let middleBackArray = [];
-      let bicepsArray = [];
+      let latsArray: string[] = [];
+      let lowerBackArray: string[] = [];
+      let middleBackArray: string[] = [];
+      let bicepsArray: string[] = [];
       
-      let trapsArray = [];
+      let trapsArray: string[] = [];
 
       if (selectedDifficulty === 'Beginner') {
-        // Duas repetições;
-        for (let i = 0; i < 1; i += 1) {
-          let randomNumber = Math.floor(Math.random() * 10);
-          
-          while(randomNumber === lastNumber) {
-            randomNumber = Math.floor(Math.random() * 10);
-          }
-          
-          lastNumber = randomNumber
+        const twoRepetitionsObject = {
+          quadricepsArray,
+          abdominalsArray,
+          lowerBackArray,
+          middleBackArray,
+          bicepsArray,
+        }
+  
+        const threeRepetitionsObject = {
+          chestArray,
+          tricepsArray,
+        }
+  
+        const fiveRepetitionsObject = {
+          trapsArray
+        }
+  
+        const oneRepetitionObject = {
+          calvesArray,
+          abductorsArray,
+          adductorsArray,
+          hamstringsArray,
+          glutesArray,
+        }
 
-          quadricepsArray.push(quad[randomNumber]);
+      // Duas repetições;
+        // for (let i = 0; i < 1; i += 1) {
+        //   let randomNumber = Math.floor(Math.random() * 10);
+          
+        //   while(randomNumber === lastNumber) {
+        //     randomNumber = Math.floor(Math.random() * 10);
+        //   }
+          
+        //   lastNumber = randomNumber
 
-          abdominalsArray.push(abs[randomNumber]);
+        //   quadricepsArray.push(quad[randomNumber]);
+
+        //   abdominalsArray.push(abs[randomNumber]);
           
-          lowerBackArray.push(loba[randomNumber]);
-          middleBackArray.push(miba[randomNumber]);
+        //   lowerBackArray.push(loba[randomNumber]);
+        //   middleBackArray.push(miba[randomNumber]);
           
-          bicepsArray.push(bice[randomNumber]);
+        //   bicepsArray.push(bice[randomNumber]);
+        // }
+
+        for (let i = 0; i < 2; i += 1) {
+          const quadRandomNumber = teste(quad, lastNumber);
+          quadricepsArray.push(quad[quadRandomNumber]);
+          
+          const absRandomNumber = teste(abs, lastNumber);
+          abdominalsArray.push(abs[absRandomNumber]);
+
+          const lowerBackRandomNumber = teste(loba, lastNumber);
+          lowerBackArray.push(loba[lowerBackRandomNumber]);
+
+          const middleBackRandomNumber = teste(miba, lastNumber);
+          middleBackArray.push(miba[middleBackRandomNumber]);
+
+          const bicepsRandomNumber = teste(bice, lastNumber);          
+          bicepsArray.push(bice[bicepsRandomNumber]);
         }
 
         // Três repetições;
-        for (let i = 0; i < 2; i += 1) {
-          let randomNumber = Math.floor(Math.random() * 10);
+        for (let i = 0; i < 3; i += 1) {
+          const chestRandomNumber = teste(ches, lastNumber);          
+          chestArray.push(ches[chestRandomNumber]);
           
-          while(randomNumber === lastNumber) {
-            randomNumber = Math.floor(Math.random() * 10);
-          }
-          
-          lastNumber = randomNumber
-          
-          chestArray.push(ches[randomNumber]);
-          tricepsArray.push(tric[randomNumber]);
+          const tricepsRandomNumber = teste(tric, lastNumber);          
+          tricepsArray.push(tric[tricepsRandomNumber]);
         }
 
         // Cinco repetições;
-        for (let i = 0; i < 3; i += 1) {
-          let randomNumber = Math.floor(Math.random() * 10);
-          
-          while(randomNumber === lastNumber) {
-            randomNumber = Math.floor(Math.random() * 10);
-          }
-          
-          lastNumber = randomNumber;
-
-          trapsArray.push(trap[randomNumber]);    
+        for (let i = 0; i < 5; i += 1) {
+          const trapRandomNumber = teste(trap, lastNumber);          
+          trapsArray.push(trap[trapRandomNumber]);    
         }
 
         // Uma repetição;
@@ -200,6 +249,10 @@ export function MaleSeries() {
           BDay,
           CDay,
         }
+
+        setLoading(false);
+
+        console.log(serie);
 
         return serie;
       }
@@ -297,6 +350,10 @@ export function MaleSeries() {
           CDay,
         }
 
+        setLoading(false);
+
+        console.log(serie);
+
         return serie;
       }
 
@@ -314,7 +371,11 @@ export function MaleSeries() {
     <Container>
       <Title>My Gym Series</Title>
 
-      {/* <Button title="Click me motherfucker" onPress={() => {console.log(selectedDifficulty, selectedType, selectedStyle)}}/> */}
+      <RNButton title="Click me motherfucker" onPress={ async () => {
+        api.get('/exercise', { headers: {
+          'authorization': 'Bearer ' + await getToken()
+        }})
+        }}/>
     
       <Button onPress={async () => {
         const serie = await MountMySeries();
@@ -322,7 +383,7 @@ export function MaleSeries() {
         setSerie(serie as any);
       }}>
         <ButtonText>
-          Monte Minha Série
+          { loading ? <ActivityIndicator /> : 'Monte Minha Série' }
         </ButtonText>
       </Button>
     </Container>
