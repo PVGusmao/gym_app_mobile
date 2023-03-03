@@ -30,7 +30,7 @@ export function Register() {
 
   async function onSubmit(data: any) {
     const response = await api.post('/register', data)
-    .catch((e) => console.log(e.response.data.message));
+    .catch((e: any) => console.log(e.response.data.message));
 
     return response;
   }

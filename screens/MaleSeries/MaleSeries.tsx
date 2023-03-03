@@ -16,6 +16,7 @@ import { getAbdominals, getAbductors, getAdductors, getCalves, getGlutes, getHam
 import { getTraps } from "../../utils/Shoulder/Shoulder";
 import { ActivityIndicator } from "react-native";
 import api, { getToken } from "../../utils/api";
+import axios from "axios";
 
 export function MaleSeries() {
   const navigation = useNavigation();
@@ -38,349 +39,319 @@ export function MaleSeries() {
   const [traps, setTraps] = useState([]);
   const [triceps, setTriceps] = useState([]);
 
-  function randomElements(array: string[]) {
-    const n = array.length;
-    const index1 = Math.floor(Math.random() * n);
-    let index2 = Math.floor(Math.random() * n);
+  // function randomElements(array: string[]) {
+  //   const n = array.length;
+  //   const index1 = Math.floor(Math.random() * n);
+  //   let index2 = Math.floor(Math.random() * n);
     
-    while (index2 === index1) {
-      index2 = Math.floor(Math.random() * n);
-    }
+  //   while (index2 === index1) {
+  //     index2 = Math.floor(Math.random() * n);
+  //   }
     
-    const randomArray = [array[index1], array[index2]];
+  //   const randomArray = [array[index1], array[index2]];
     
-    array.splice(index2, 1);
-    array.splice(index1, 1);
+  //   array.splice(index2, 1);
+  //   array.splice(index1, 1);
     
-    return randomArray;
-  }
+  //   return randomArray;
+  // }
 
-  function teste(group: any, lastNumber: number | null) {
-    let randomNumber = Math.floor(Math.random() * group.length);
+  // function teste(group: any, lastNumber: number | null) {
+  //   let randomNumber = Math.floor(Math.random() * group.length);
           
-    while(randomNumber === lastNumber) {
-      randomNumber = Math.floor(Math.random() * 10);
-    }
+  //   while(randomNumber === lastNumber) {
+  //     randomNumber = Math.floor(Math.random() * 10);
+  //   }
 
-    lastNumber = randomNumber;
+  //   lastNumber = randomNumber;
 
-    return randomNumber;
-  }
+  //   return randomNumber;
+  // }
 
-  async function MountMySeries() {
+  // async function MountMySeries() {
 
-    let ADay = {}
-    let BDay = {}
-    let CDay = {}
+  //   let ADay = {}
+  //   let BDay = {}
+  //   let CDay = {}
 
-    setLoading(true);
+  //   setLoading(true);
 
-    const abs = await getAbdominals(selectedDifficulty);
-    setAbdominals(abs);
+  //   const abs = await getAbdominals(selectedDifficulty);
+  //   setAbdominals(abs);
     
-    const abduc = await getAbductors(selectedDifficulty);
-    setAbductors(abduc);
+  //   const abduc = await getAbductors(selectedDifficulty);
+  //   setAbductors(abduc);
     
-    const adduc = await getAdductors(selectedDifficulty);
-    setAdductors(adduc);
+  //   const adduc = await getAdductors(selectedDifficulty);
+  //   setAdductors(adduc);
     
-    const calv = await getCalves(selectedDifficulty);
-    setCalves(calv);
+  //   const calv = await getCalves(selectedDifficulty);
+  //   setCalves(calv);
     
-    const glut = await getGlutes(selectedDifficulty);
-    setGlutes(glut);
+  //   const glut = await getGlutes(selectedDifficulty);
+  //   setGlutes(glut);
     
-    const hams = await getHamstrings(selectedDifficulty);
-    setHamstrings(hams);
+  //   const hams = await getHamstrings(selectedDifficulty);
+  //   setHamstrings(hams);
     
-    const quad = await getQuadriceps(selectedDifficulty);
-    setQuadriceps(quad);
+  //   const quad = await getQuadriceps(selectedDifficulty);
+  //   setQuadriceps(quad);
 
-    const ches = await getChest(selectedDifficulty);
-    setChest(ches);
+  //   const ches = await getChest(selectedDifficulty);
+  //   setChest(ches);
 
-    const bice = await getBiceps(selectedDifficulty);
-    setBiceps(bice);
+  //   const bice = await getBiceps(selectedDifficulty);
+  //   setBiceps(bice);
     
-    const tric = await getTriceps(selectedDifficulty);
-    setTriceps(tric);
+  //   const tric = await getTriceps(selectedDifficulty);
+  //   setTriceps(tric);
     
-    const loba = await getLowerBack(selectedDifficulty);
-    setLowerBack(loba);
+  //   const loba = await getLowerBack(selectedDifficulty);
+  //   setLowerBack(loba);
     
-    const miba = await getMiddleBack(selectedDifficulty);
-    setMiddleBack(miba);
+  //   const miba = await getMiddleBack(selectedDifficulty);
+  //   setMiddleBack(miba);
     
-    const lat = await getLats(selectedDifficulty);
-    setLats(lat);
+  //   const lat = await getLats(selectedDifficulty);
+  //   setLats(lat);
 
-    const trap = await getTraps(selectedDifficulty);
-    setTraps(trap);
+  //   const trap = await getTraps(selectedDifficulty);
+  //   setTraps(trap);
 
-    if (selectedStyle === 'ABC') {
-      let lastNumber = null;
+  //   if (selectedStyle === 'ABC') {
+  //     let lastNumber = null;
 
-      let calvesArray: string[] = [];
-      let quadricepsArray: string[] = [];
-      let abductorsArray: string[] = [];
-      let adductorsArray: string[] = [];
-      let hamstringsArray: string[] = [];
-      let glutesArray: string[] = [];
+  //     let calvesArray: string[] = [];
+  //     let quadricepsArray: string[] = [];
+  //     let abductorsArray: string[] = [];
+  //     let adductorsArray: string[] = [];
+  //     let hamstringsArray: string[] = [];
+  //     let glutesArray: string[] = [];
 
-      let abdominalsArray: string[] = [];
+  //     let abdominalsArray: string[] = [];
       
-      let chestArray: string[] = [];
-      let tricepsArray: string[] = [];
+  //     let chestArray: string[] = [];
+  //     let tricepsArray: string[] = [];
       
-      let latsArray: string[] = [];
-      let lowerBackArray: string[] = [];
-      let middleBackArray: string[] = [];
-      let bicepsArray: string[] = [];
+  //     let latsArray: string[] = [];
+  //     let lowerBackArray: string[] = [];
+  //     let middleBackArray: string[] = [];
+  //     let bicepsArray: string[] = [];
       
-      let trapsArray: string[] = [];
+  //     let trapsArray: string[] = [];
 
-      if (selectedDifficulty === 'Beginner') {
-        const twoRepetitionsObject = {
-          quadricepsArray,
-          abdominalsArray,
-          lowerBackArray,
-          middleBackArray,
-          bicepsArray,
-        }
-  
-        const threeRepetitionsObject = {
-          chestArray,
-          tricepsArray,
-        }
-  
-        const fiveRepetitionsObject = {
-          trapsArray
-        }
-  
-        const oneRepetitionObject = {
-          calvesArray,
-          abductorsArray,
-          adductorsArray,
-          hamstringsArray,
-          glutesArray,
-        }
+  //     if (selectedDifficulty === 'Beginner') {
 
-      // Duas repetições;
-        // for (let i = 0; i < 1; i += 1) {
-        //   let randomNumber = Math.floor(Math.random() * 10);
+  //       for (let i = 0; i < 2; i += 1) {
+  //         const quadRandomNumber = teste(quad, lastNumber);
+  //         quadricepsArray.push(quad[quadRandomNumber]);
           
-        //   while(randomNumber === lastNumber) {
-        //     randomNumber = Math.floor(Math.random() * 10);
-        //   }
+  //         const absRandomNumber = teste(abs, lastNumber);
+  //         abdominalsArray.push(abs[absRandomNumber]);
+
+  //         const lowerBackRandomNumber = teste(loba, lastNumber);
+  //         lowerBackArray.push(loba[lowerBackRandomNumber]);
+
+  //         const middleBackRandomNumber = teste(miba, lastNumber);
+  //         middleBackArray.push(miba[middleBackRandomNumber]);
+
+  //         const bicepsRandomNumber = teste(bice, lastNumber);          
+  //         bicepsArray.push(bice[bicepsRandomNumber]);
+  //       }
+
+  //       // Três repetições;
+  //       for (let i = 0; i < 3; i += 1) {
+  //         const chestRandomNumber = teste(ches, lastNumber);          
+  //         chestArray.push(ches[chestRandomNumber]);
           
-        //   lastNumber = randomNumber
+  //         const tricepsRandomNumber = teste(tric, lastNumber);          
+  //         tricepsArray.push(tric[tricepsRandomNumber]);
+  //       }
 
-        //   quadricepsArray.push(quad[randomNumber]);
+  //       // Cinco repetições;
+  //       for (let i = 0; i < 5; i += 1) {
+  //         const trapRandomNumber = teste(trap, lastNumber);          
+  //         trapsArray.push(trap[trapRandomNumber]);    
+  //       }
 
-        //   abdominalsArray.push(abs[randomNumber]);
+  //       // Uma repetição;
+  //       calvesArray.push(calv[Math.floor(Math.random())]);
+  //       abductorsArray.push(abduc[Math.floor(Math.random())]);
+  //       adductorsArray.push(adduc[Math.floor(Math.random())]);
+  //       hamstringsArray.push(hams[Math.floor(Math.random())]);
+  //       glutesArray.push(glut[Math.floor(Math.random())]);
+
+  //       ADay = {
+  //         chest: chestArray,
+  //         shoulder: randomElements(trapsArray),
+  //         triceps: tricepsArray,
+  //       }
+
+  //       BDay = {
+  //         back: [...lowerBackArray, ...middleBackArray],
+  //         biceps: bicepsArray,
+  //         shoulder: randomElements(trapsArray),
+  //       }
+
+  //       CDay = {
+  //         quadrieps: quadricepsArray,
+  //         abductors: abductorsArray,
+  //         adductors: adductorsArray,
+  //         hamstrings: hamstringsArray,
+  //         glutes: glutesArray,
+  //       }
+
+  //       const serie = {
+  //         ADay,
+  //         BDay,
+  //         CDay,
+  //       }
+
+  //       setLoading(false);
+
+  //       console.log(serie);
+
+  //       return serie;
+  //     }
+
+  //     if (selectedDifficulty === 'Intermediate') {
+  //       // Duas repetições;
+  //       for (let i = 0; i < 1; i += 1) {
+  //         let randomNumber = Math.floor(Math.random() * 10);
           
-        //   lowerBackArray.push(loba[randomNumber]);
-        //   middleBackArray.push(miba[randomNumber]);
+  //         while(randomNumber === lastNumber) {
+  //           randomNumber = Math.floor(Math.random() * 10);
+  //         }
           
-        //   bicepsArray.push(bice[randomNumber]);
-        // }
+  //         lastNumber = randomNumber
 
-        for (let i = 0; i < 2; i += 1) {
-          const quadRandomNumber = teste(quad, lastNumber);
-          quadricepsArray.push(quad[quadRandomNumber]);
+  //         // 3
+
+
+  //         abdominalsArray.push(abs[randomNumber]);
+  //         lowerBackArray.push(loba[randomNumber]);          
+  //       }
+
+  //       // Três repetições;
+  //       for (let i = 0; i < 2; i += 1) {
+  //         let randomNumber = Math.floor(Math.random() * 10);
           
-          const absRandomNumber = teste(abs, lastNumber);
-          abdominalsArray.push(abs[absRandomNumber]);
-
-          const lowerBackRandomNumber = teste(loba, lastNumber);
-          lowerBackArray.push(loba[lowerBackRandomNumber]);
-
-          const middleBackRandomNumber = teste(miba, lastNumber);
-          middleBackArray.push(miba[middleBackRandomNumber]);
-
-          const bicepsRandomNumber = teste(bice, lastNumber);          
-          bicepsArray.push(bice[bicepsRandomNumber]);
-        }
-
-        // Três repetições;
-        for (let i = 0; i < 3; i += 1) {
-          const chestRandomNumber = teste(ches, lastNumber);          
-          chestArray.push(ches[chestRandomNumber]);
+  //         while(randomNumber === lastNumber) {
+  //           randomNumber = Math.floor(Math.random() * 10);
+  //         }
           
-          const tricepsRandomNumber = teste(tric, lastNumber);          
-          tricepsArray.push(tric[tricepsRandomNumber]);
-        }
+  //         lastNumber = randomNumber
 
-        // Cinco repetições;
-        for (let i = 0; i < 5; i += 1) {
-          const trapRandomNumber = teste(trap, lastNumber);          
-          trapsArray.push(trap[trapRandomNumber]);    
-        }
-
-        // Uma repetição;
-        calvesArray.push(calv[Math.floor(Math.random())]);
-        abductorsArray.push(abduc[Math.floor(Math.random())]);
-        adductorsArray.push(adduc[Math.floor(Math.random())]);
-        hamstringsArray.push(hams[Math.floor(Math.random())]);
-        glutesArray.push(glut[Math.floor(Math.random())]);
-
-        ADay = {
-          chest: chestArray,
-          shoulder: randomElements(trapsArray),
-          triceps: tricepsArray,
-        }
-
-        BDay = {
-          back: [...lowerBackArray, ...middleBackArray],
-          biceps: bicepsArray,
-          shoulder: randomElements(trapsArray),
-        }
-
-        CDay = {
-          quadrieps: quadricepsArray,
-          abductors: abductorsArray,
-          adductors: adductorsArray,
-          hamstrings: hamstringsArray,
-          glutes: glutesArray,
-        }
-
-        const serie = {
-          ADay,
-          BDay,
-          CDay,
-        }
-
-        setLoading(false);
-
-        console.log(serie);
-
-        return serie;
-      }
-
-      if (selectedDifficulty === 'Intermediate') {
-        // Duas repetições;
-        for (let i = 0; i < 1; i += 1) {
-          let randomNumber = Math.floor(Math.random() * 10);
+  //         quadricepsArray.push(quad[randomNumber]);
+  //         tricepsArray.push(tric[randomNumber]);
+  //         bicepsArray.push(bice[randomNumber]);
+  //         middleBackArray.push(miba[randomNumber]);
           
-          while(randomNumber === lastNumber) {
-            randomNumber = Math.floor(Math.random() * 10);
-          }
+  //       }
+
+  //       // Quatro repetições;
+  //       for (let i = 0; i < 3; i += 1) {
+  //         let randomNumber = Math.floor(Math.random() * 10);
           
-          lastNumber = randomNumber
-
-          // 3
-
-
-          abdominalsArray.push(abs[randomNumber]);
-          lowerBackArray.push(loba[randomNumber]);          
-        }
-
-        // Três repetições;
-        for (let i = 0; i < 2; i += 1) {
-          let randomNumber = Math.floor(Math.random() * 10);
+  //         while(randomNumber === lastNumber) {
+  //           randomNumber = Math.floor(Math.random() * 10);
+  //         }
           
-          while(randomNumber === lastNumber) {
-            randomNumber = Math.floor(Math.random() * 10);
-          }
+  //         lastNumber = randomNumber;
+  //         chestArray.push(ches[randomNumber]);
+  //       }
+
+  //       // Cinco repetições;
+  //       for (let i = 0; i < 4; i += 1) {
+  //         let randomNumber = Math.floor(Math.random() * 10);
           
-          lastNumber = randomNumber
-
-          quadricepsArray.push(quad[randomNumber]);
-          tricepsArray.push(tric[randomNumber]);
-          bicepsArray.push(bice[randomNumber]);
-          middleBackArray.push(miba[randomNumber]);
+  //         while(randomNumber === lastNumber) {
+  //           randomNumber = Math.floor(Math.random() * 10);
+  //         }
           
-        }
+  //         lastNumber = randomNumber;
+  //         trapsArray.push(trap[randomNumber]);    
+  //       }
 
-        // Quatro repetições;
-        for (let i = 0; i < 3; i += 1) {
-          let randomNumber = Math.floor(Math.random() * 10);
-          
-          while(randomNumber === lastNumber) {
-            randomNumber = Math.floor(Math.random() * 10);
-          }
-          
-          lastNumber = randomNumber;
-          chestArray.push(ches[randomNumber]);
-        }
+  //       // Uma repetição;
+  //       calvesArray.push(calv[Math.floor(Math.random())]);
+  //       abductorsArray.push(abduc[Math.floor(Math.random())]);
+  //       adductorsArray.push(adduc[Math.floor(Math.random())]);
+  //       hamstringsArray.push(hams[Math.floor(Math.random())]);
+  //       glutesArray.push(glut[Math.floor(Math.random())]);
+  //       latsArray.push(lat[Math.floor(Math.random())]);
 
-        // Cinco repetições;
-        for (let i = 0; i < 4; i += 1) {
-          let randomNumber = Math.floor(Math.random() * 10);
-          
-          while(randomNumber === lastNumber) {
-            randomNumber = Math.floor(Math.random() * 10);
-          }
-          
-          lastNumber = randomNumber;
-          trapsArray.push(trap[randomNumber]);    
-        }
+  //       ADay = {
+  //         chest: chestArray,
+  //         shoulder: randomElements(trapsArray),
+  //         triceps: tricepsArray,
+  //       }
 
-        // Uma repetição;
-        calvesArray.push(calv[Math.floor(Math.random())]);
-        abductorsArray.push(abduc[Math.floor(Math.random())]);
-        adductorsArray.push(adduc[Math.floor(Math.random())]);
-        hamstringsArray.push(hams[Math.floor(Math.random())]);
-        glutesArray.push(glut[Math.floor(Math.random())]);
-        latsArray.push(lat[Math.floor(Math.random())]);
+  //       BDay = {
+  //         back: [...lowerBackArray, ...middleBackArray],
+  //         biceps: bicepsArray,
+  //         shoulder: randomElements(trapsArray),
+  //       }
 
-        ADay = {
-          chest: chestArray,
-          shoulder: randomElements(trapsArray),
-          triceps: tricepsArray,
-        }
+  //       CDay = {
+  //         quadrieps: quadricepsArray,
+  //         abductors: abductorsArray,
+  //         adductors: adductorsArray,
+  //         hamstrings: hamstringsArray,
+  //         glutes: glutesArray,
+  //       }
 
-        BDay = {
-          back: [...lowerBackArray, ...middleBackArray],
-          biceps: bicepsArray,
-          shoulder: randomElements(trapsArray),
-        }
+  //       const serie = {
+  //         ADay,
+  //         BDay,
+  //         CDay,
+  //       }
 
-        CDay = {
-          quadrieps: quadricepsArray,
-          abductors: abductorsArray,
-          adductors: adductorsArray,
-          hamstrings: hamstringsArray,
-          glutes: glutesArray,
-        }
+  //       setLoading(false);
 
-        const serie = {
-          ADay,
-          BDay,
-          CDay,
-        }
+  //       console.log(serie);
 
-        setLoading(false);
+  //       return serie;
+  //     }
 
-        console.log(serie);
+  //     if (selectedDifficulty === 'Expert') {
 
-        return serie;
-      }
+  //     }
 
-      if (selectedDifficulty === 'Expert') {
-
-      }
-
-    } else {
-      let DDay = {}
-      let EDay = {}
-    }
-  }
+  //   } else {
+  //     let DDay = {}
+  //     let EDay = {}
+  //   }
+  // }
 
   return (
     <Container>
       <Title>My Gym Series</Title>
 
       <RNButton title="Click me motherfucker" onPress={ async () => {
-        api.get('/exercise', { headers: {
-          'authorization': 'Bearer ' + await getToken()
-        }})
+        setLoading(true);
+        const data = await axios.post('http://10.0.0.22:3000/exercise',
+          {
+            selectedDifficulty,
+            selectedObjective,
+            selectedStyle,
+            selectedType,
+          },
+          { 
+            headers:
+              {
+                'authorization': 'Bearer ' + await getToken()
+              }
+          }
+        )
+        setLoading(false);
+        console.log(data.data);
         }}/>
     
       <Button onPress={async () => {
-        const serie = await MountMySeries();
-        console.log(serie);
-        setSerie(serie as any);
+        // const serie = await MountMySeries();
+        // console.log(serie);
+        // setSerie(serie as any);
       }}>
         <ButtonText>
           { loading ? <ActivityIndicator /> : 'Monte Minha Série' }
