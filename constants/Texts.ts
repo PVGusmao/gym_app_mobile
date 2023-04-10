@@ -11,8 +11,10 @@ export const type = [
   'Strongman'
 ]
 
-export const maleStyle = [
+export const style = [
+  'AB',
   'ABC',
+  'ABCD',
   'ABCDE',
 ]
 

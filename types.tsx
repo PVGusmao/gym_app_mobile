@@ -20,7 +20,7 @@ export type RootStackParamList = {
   Home: undefined;
   'Male Series': undefined;
   'Female Series': undefined;
-  Objective: undefined;
+  Perfil: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<

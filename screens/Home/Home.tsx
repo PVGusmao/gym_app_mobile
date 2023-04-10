@@ -79,7 +79,12 @@ export function Home() {
         disabled={
           selectedType === 'None' || selectedDifficulty === 'None' || selectedStyle === 'None' ? true : false
         }
-        onPress={() => {genderState === 'Masculino' ? navigation.navigate('Male Series') : navigation.navigate('Female Series') }}>
+        onPress={() => {
+          genderState === 'Masculino'
+          ? navigation.navigate('Male Series')
+          : navigation.navigate('Female Series')
+          }}
+        >
         <ButtonText>Request Series</ButtonText>
       </ButtonContainer>
     </>

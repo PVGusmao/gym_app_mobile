@@ -9,9 +9,10 @@ export const Container = styled.View`
 `
 
 export const ButtonContainer = styled.TouchableOpacity<Props>`
-  margin: 20px;
   height: 50px;
 
+  margin-top: 40px;
+  
   align-items: center;
   justify-content: center;
 

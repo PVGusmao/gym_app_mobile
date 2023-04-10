@@ -78,7 +78,7 @@ export function DashBoard() {
         title='Clique aqui para montarmos seu perfil'
         onPress={() => {
         getUserData();
-        navigation.navigate('Objective')
+        navigation.navigate('Perfil')
       }} />
     </Container>
   )

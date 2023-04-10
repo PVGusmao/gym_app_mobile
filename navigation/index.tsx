@@ -16,7 +16,7 @@ import { DashBoard } from '../screens/DashBoard/DashBoard';
 import { Home } from '../screens/Home/Home';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
-import { Objective } from '../screens/Objective/Objective';
+import { Objective } from '../screens/Perfil/Objective';
 import { Profile } from '../screens/Profile/Profile';
 import { MaleSeries } from '../screens/MaleSeries/MaleSeries';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
@@ -45,7 +45,7 @@ function RootNavigator() {
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="Objective" component={Objective} />
+      <Stack.Screen name="Perfil" component={Objective} />
       <Stack.Screen name="Male Series" component={MaleSeries} />
       <Stack.Screen name="Female Series" component={FemaleSeries} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
